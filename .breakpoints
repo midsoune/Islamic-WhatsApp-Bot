@@ -1,0 +1,20 @@
+{
+  "files": {
+    "config.js": [
+      {
+        "id": "e8aaff0c-80a1-465e-8195-cf53832a3aec",
+        "line": 1,
+        "version": 39,
+        "index": 8
+      }
+    ],
+    "plugins/kora-match2.js": [
+      {
+        "id": "4f145e93-9995-420f-a125-f502310a2c40",
+        "line": 4,
+        "version": 75,
+        "index": 92
+      }
+    ]
+  }
+}
