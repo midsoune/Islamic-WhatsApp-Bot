@@ -1,4 +1,4 @@
-console.log('[ ℹ️ ] Iniciando...');
+console.log('[ ℹ️ ] Starting ...');
 import {join, dirname} from 'path';
 import {createRequire} from 'module';
 import {fileURLToPath} from 'url';
@@ -13,30 +13,20 @@ const {name, author} = require(join(__dirname, './package.json'));
 const {say} = cfonts;
 const rl = createInterface(process.stdin, process.stdout);
 
-say('Mystic - Bot\nWhatsApp Bot', {
+say('𝙄𝙨𝙡𝙖𝙢𝙞𝙘-𝙒𝙝𝙖𝙩𝘼𝙥𝙥-𝘽𝙤𝙩', {
   font: 'chrome',
   align: 'center',
   gradient: ['red', 'magenta']});
-say(`Bot creado por Bruno Sobrino`, {
+say(`By: ♛ 𝙈𝙞𝙙𝙨𝙤𝙪𝙣𝙚 ♛`, {
   font: 'console',
   align: 'center',
   gradient: ['red', 'magenta']});
 
 let isRunning = false;
-/**
-* Start a js file
-* @param {String} file `path/to/file`
-*/
 function start(file) {
   if (isRunning) return;
   isRunning = true;
   const args = [join(__dirname, file), ...process.argv.slice(2)];
-
-  /** say('[ ℹ️ ] Escanea el código QR o introduce el código de emparejamiento en WhatsApp.', {
-    font: 'console',
-    align: 'center',
-    gradient: ['red', 'magenta']}); **/
-
   setupMaster({
     exec: args[0],
     args: args.slice(1)});
