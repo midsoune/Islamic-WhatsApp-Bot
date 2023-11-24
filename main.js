@@ -290,29 +290,28 @@ async function connectionUpdate(update) {
 let reason = new Boom(lastDisconnect?.error)?.output?.statusCode;
 if (connection === 'close') {
     if (reason === DisconnectReason.badSession) {
-     if (reason === DisconnectReason.invalidSession) {
-  conn.logger.error(`[ ⚠ ] Incorrect session, please delete the folder ${global.authFile} and scan again.`);
-  //process.exit();
-} else if (reason === DisconnectReason.connectionClosed) {
-  conn.logger.warn(`[ ⚠ ] Connection closed, reconnecting...`);
-  await global.reloadHandler(true).catch(console.error);
-} else if (reason === DisconnectReason.connectionLost) {
-  conn.logger.warn(`[ ⚠ ] Connection lost with the server, reconnecting...`);
-  await global.reloadHandler(true).catch(console.error);
-} else if (reason === DisconnectReason.connectionReplaced) {
-  conn.logger.error(`[ ⚠ ] Connection replaced, another session has been opened. Please close the current session first.`);
-  //process.exit();
-} else if (reason === DisconnectReason.loggedOut) {
-  conn.logger.error(`[ ⚠ ] Connection closed, please delete the folder ${global.authFile} and scan again.`);
-  //process.exit();
-} else if (reason === DisconnectReason.restartRequired) {
-  conn.logger.info(`[ ⚠ ] Restart required, restart the server if you encounter any issues.`);
-  await global.reloadHandler(true).catch(console.error);
-} else if (reason === DisconnectReason.timedOut) {
-  conn.logger.warn(`[ ⚠ ] Connection timed out, reconnecting...`);
-  await global.reloadHandler(true).catch(console.error);
-} else {
-  conn.logger.warn(`[ ⚠ ] Unknown disconnection reason ${reason || ''}: ${connection || ''}`);
+        conn.logger.error(`[ ⚠ ] Sesión incorrecta, por favor elimina la carpeta ${global.authFile} y escanea nuevamente.`);
+        //process.exit();
+    } else if (reason === DisconnectReason.connectionClosed) {
+        conn.logger.warn(`[ ⚠ ] Conexión cerrada, reconectando...`);
+        await global.reloadHandler(true).catch(console.error);
+    } else if (reason === DisconnectReason.connectionLost) {
+        conn.logger.warn(`[ ⚠ ] Conexión perdida con el servidor, reconectando...`);
+        await global.reloadHandler(true).catch(console.error);
+    } else if (reason === DisconnectReason.connectionReplaced) {
+        conn.logger.error(`[ ⚠ ] Conexión reemplazada, se ha abierto otra nueva sesión. Por favor, cierra la sesión actual primero.`);
+        //process.exit();
+    } else if (reason === DisconnectReason.loggedOut) {
+        conn.logger.error(`[ ⚠ ] Conexion cerrada, por favor elimina la carpeta ${global.authFile} y escanea nuevamente.`);
+        //process.exit();
+    } else if (reason === DisconnectReason.restartRequired) {
+        conn.logger.info(`[ ⚠ ] Reinicio necesario, reinicie el servidor si presenta algún problema.`);
+        await global.reloadHandler(true).catch(console.error);
+    } else if (reason === DisconnectReason.timedOut) {
+        conn.logger.warn(`[ ⚠ ] Tiempo de conexión agotado, reconectando...`);
+        await global.reloadHandler(true).catch(console.error);
+    } else {
+        conn.logger.warn(`[ ⚠ ] Razón de desconexión desconocida. ${reason || ''}: ${connection || ''}`);
         await global.reloadHandler(true).catch(console.error);
     }
 }
@@ -351,14 +350,14 @@ global.reloadHandler = async function(restatConn) {
     conn.ev.off('creds.update', conn.credsUpdate);
   }
 
-  conn.welcome = '👋 مرحبًا!\n@user';
-  conn.bye = '👋 إلى اللقاء!\n@user';
-  conn.spromote = '*[ ℹ️ ] تم ترقية @user إلى مدير.*';
-  conn.sdemote = '*[ ℹ️ ] تم تخفيض رتبة @user من المدير.*';
-  conn.sDesc = '*[ ℹ️ ] تم تعديل وصف المجموعة.*';
-  conn.sSubject = '*[ ℹ️ ] تم تعديل اسم المجموعة.*';
-  conn.sIcon = '*[ ℹ️ ] تم تغيير صورة ملف المجموعة.*';
-  conn.sRevoke = '*[ ℹ️ ] تم إعادة تعيين رابط الدعوة للمجموعة.*';
+  conn.welcome = '👋 ¡Bienvenido/a!\n@user';
+  conn.bye = '👋 ¡Hasta luego!\n@user';
+  conn.spromote = '*[ ℹ️ ] @user Fue promovido a administrador.*';
+  conn.sdemote = '*[ ℹ️ ] @user Fue degradado de administrador.*';
+  conn.sDesc = '*[ ℹ️ ] La descripción del grupo ha sido modificada.*';
+  conn.sSubject = '*[ ℹ️ ] El nombre del grupo ha sido modificado.*';
+  conn.sIcon = '*[ ℹ️ ] Se ha cambiado la foto de perfil del grupo.*';
+  conn.sRevoke = '*[ ℹ️ ] El enlace de invitación al grupo ha sido restablecido.*';
 
   conn.handler = handler.handler.bind(global.conn);
   conn.participantsUpdate = handler.participantsUpdate.bind(global.conn);
