@@ -1,7 +1,7 @@
 {
-  "name": "TheMystic-Bot-MD",
+  "name": "Islamic-Arabic-Bot",
   "version": "1.0.0",
-  "description": "Subs. al canal de YT The Shadow Borkers - TEAM",
+  "description": "www.techsoune.com",
   "main": "index.js",
   "type": "module",
   "directories": {
@@ -16,16 +16,16 @@
     "eslint": "eslint .",
     "eslintfix": "eslint --fix ."
   },
-  "homepage": "https://github.com/BrunoSobrino/TheMystic-Bot-MD",
+  "homepage": "https://github.com/midsoune/Islamic-WhatsApp-Bot",
   "author": {
     "name": "BrunoSobrino"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BrunoSobrino/TheMystic-Bot-MD.git"
+    "url": "git+https://github.com/midsoune/Islamic-WhatsApp-Bot.git"
   },
   "bugs": {
-    "url": "https://github.com/BrunoSobrino/TheMystic-Bot-MD/issues"
+    "url": "https://github.com/midsoune/Islamic-WhatsApp-Bot/issues"
   },
   "license": "GPL-3.0-or-later",
   "dependencies": {
