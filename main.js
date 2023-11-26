@@ -107,7 +107,7 @@ loadChatgptDB();
 
 /* ------------------------------------------------*/
 
-global.authFile = `MidSession`;
+global.authFile = `MysticSession`;
 const {state, saveState, saveCreds} = await useMultiFileAuthState(global.authFile);
 const msgRetryCounterMap = (MessageRetryMap) => { };
 const msgRetryCounterCache = new NodeCache()
@@ -144,23 +144,23 @@ const connectionOptions = {
 global.conn = makeWASocket(connectionOptions);
 
     if (pairingCode && !conn.authState.creds.registered) {
-        if (useMobile) throw new Error('Cant use a pairing code with the Mobile API')
+        if (useMobile) throw new Error('No se puede usar un código de emparejamiento con la API móvil')
 
         let numeroTelefono
         if (!!phoneNumber) {
             numeroTelefono = phoneNumber.replace(/[^0-9]/g, '')
 
             if (!Object.keys(PHONENUMBER_MCC).some(v => numeroTelefono.startsWith(v))) {
-                console.log(chalk.bgBlack(chalk.redBright("Start with the country code of your WhatsApp number.\nExample: +2126xxxxxxxx")))
+                console.log(chalk.bgBlack(chalk.redBright("Comience con el código de país de su número de WhatsApp.\nEjemplo: +5219992095479")))
                 process.exit(0)
             }
         } else {
-            numeroTelefono = await question(chalk.bgBlack(chalk.greenBright(`Please enter your WhatsApp number.\nExample: +2126xxxxxxxx : `)))
+            numeroTelefono = await question(chalk.bgBlack(chalk.greenBright(`Por favor, escriba su número de WhatsApp.\nEjemplo: +5219992095479 : `)))
             numeroTelefono = numeroTelefono.replace(/[^0-9]/g, '')
             if (!Object.keys(PHONENUMBER_MCC).some(v => numeroTelefono.startsWith(v))) {
-                console.log(chalk.bgBlack(chalk.redBright("Comience con el código de país de su número de WhatsApp.\nEjemplo: +2126xxxxxxxx")))
+                console.log(chalk.bgBlack(chalk.redBright("Comience con el código de país de su número de WhatsApp.\nEjemplo: +5219992095479")))
 
-                numeroTelefono = await question(chalk.bgBlack(chalk.greenBright(`Please write your WhatsApp number.\nExample: +2126xxxxxxxx : `)))
+                numeroTelefono = await question(chalk.bgBlack(chalk.greenBright(`Por favor, escriba su número de WhatsApp.\nEjemplo: +5219992095479 : `)))
                 numeroTelefono = numeroTelefono.replace(/[^0-9]/g, '')
                 rl.close()
             }
@@ -169,13 +169,13 @@ global.conn = makeWASocket(connectionOptions);
         setTimeout(async () => {
             let codigo = await conn.requestPairingCode(numeroTelefono)
             codigo = codigo?.match(/.{1,4}/g)?.join("-") || codigo
-            console.log(chalk.black(chalk.bgGreen(`Your Pairing Code: `)), chalk.black(chalk.white(codigo)))
+            console.log(chalk.black(chalk.bgGreen(`Su código de emparejamiento: `)), chalk.black(chalk.white(codigo)))
         }, 3000)
     }
 
 conn.isInit = false;
 conn.well = false;
-conn.logger.info(`[ ℹ️ ] Waiting...\n`);
+conn.logger.info(`[ ℹ️ ] Cargando...\n`);
 
 if (!opts['test']) {
   if (global.db) {
@@ -198,12 +198,12 @@ if (opts['server']) (await import('./server.js')).default(global.conn, PORT);
         que me arrepiento de ser un grasoso
         Por que la grasa es un sentimiento
         - El waza 👻👻👻👻 (Aiden)            
-        
+
    Yo tambien se hacer momazos Aiden...
         ahi te va el ajuste de los borrados
         inteligentes de las sesiones y de los sub-bot
         By (Rey Endymion 👺👍🏼) 
-        
+
    Ninguno es mejor que tilin god
         - atte: sk1d             */
 
@@ -220,13 +220,13 @@ function clearTmp() {
 
 function purgeSession() {
 let prekey = []
-let directorio = readdirSync("./MidSession")
+let directorio = readdirSync("./MysticSession")
 let filesFolderPreKeys = directorio.filter(file => {
 return file.startsWith('pre-key-') /*|| file.startsWith('session-') || file.startsWith('sender-') || file.startsWith('app-') */
 })
 prekey = [...prekey, ...filesFolderPreKeys]
 filesFolderPreKeys.forEach(files => {
-unlinkSync(`./MidSession/${files}`)
+unlinkSync(`./MysticSession/${files}`)
 })
 } 
 
@@ -247,11 +247,11 @@ unlinkSync(`./jadibts/${directorio}/${fileInDir}`)
 })
 if (SBprekey.length === 0) return; //console.log(chalk.cyanBright(`=> No hay archivos por eliminar.`))
 } catch (err) {
-console.log(chalk.bold.red(`[ ℹ️ ] Something went wrong during deletion, files not deleted`))
+console.log(chalk.bold.red(`[ ℹ️ ] Algo salio mal durante la eliminación, archivos no eliminados`))
 }}
 
 function purgeOldFiles() {
-const directories = ['./MidSession/', './jadibts/']
+const directories = ['./MysticSession/', './jadibts/']
 const oneHourAgo = Date.now() - (60 * 60 * 1000)
 directories.forEach(dir => {
 readdirSync(dir, (err, files) => {
@@ -263,10 +263,10 @@ if (err) throw err;
 if (stats.isFile() && stats.mtimeMs < oneHourAgo && file !== 'creds.json') { 
 unlinkSync(filePath, err => {  
 if (err) throw err
-console.log(chalk.bold.green(`${file} successfully deleted`))
+console.log(chalk.bold.green(`Archivo ${file} borrado con éxito`))
 })
 } else {  
-console.log(chalk.bold.red(`${file} not deleted` + err))
+console.log(chalk.bold.red(`Archivo ${file} no borrado` + err))
 } }) }) }) })
 }
 
@@ -282,10 +282,10 @@ async function connectionUpdate(update) {
   }
   if (global.db.data == null) loadDatabase();
   if (update.qr != 0 && update.qr != undefined) {
-    console.log(chalk.yellow('[ ℹ️ ] Scan the QR code or enter the pairing code in WhatsApp.'));
+    console.log(chalk.yellow('[ ℹ️ ] Escanea el código QR o introduce el código de emparejamiento en WhatsApp.'));
   }
   if (connection == 'open') {
-    console.log(chalk.yellow('[ ℹ️ ] Connected correctly.'));
+    console.log(chalk.yellow('[ ℹ️ ] Conectado correctamente.'));
   }
 let reason = new Boom(lastDisconnect?.error)?.output?.statusCode;
 if (connection === 'close') {
@@ -507,13 +507,6 @@ setInterval(async () => {
   await purgeOldFiles();
   //console.log(chalk.cyanBright(`\n▣────────[ AUTO_PURGE_OLDFILES ]───────────···\n│\n▣─❧ ARCHIVOS ELIMINADOS ✅\n│\n▣────────────────────────────────────···\n`));
 }, 1000 * 60 * 60);
-setInterval(async () => {
-  if (stopped === 'close' || !conn || !conn.user) return;
-  const _uptime = process.uptime() * 1000;
-  const uptime = clockString(_uptime);
-  const bio = `[ ⏳ ] Uptime: ${uptime}`;
-  await conn.updateProfileStatus(bio).catch((_) => _);
-}, 60000);
 function clockString(ms) {
   const d = isNaN(ms) ? '--' : Math.floor(ms / 86400000);
   const h = isNaN(ms) ? '--' : Math.floor(ms / 3600000) % 24;
