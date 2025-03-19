@@ -4,24 +4,24 @@ import {fileURLToPath} from 'url';
 import fs from 'fs'; 
 import moment from 'moment-timezone';
 
-global.botnumber = "2126xxxxxxxx" // هنا أضف رقمك
+global.botnumber = "212604659002" // هنا أضف رقمك
 
 global.owner = [
-  ['2126xxxxxxxx', '☪ ISLAMIC-WHATSAPP-BOT ☪', false]
+  ['212604659002', '☪ ISLAMIC-WHATSAPP-BOT ☪', false]
 ];
 
-global.suittag = ['2126xxxxxxxx'];
-global.prems = ['2126xxxxxxxx'];
+global.suittag = ['212604659002'];
+global.prems = ['212604659002'];
 
 
-global.packname = '♛ 𝙈𝙞𝙙𝙨𝙤𝙪𝙣𝙚'
-global.author = '𝙈𝙞𝙙𝙨𝙤𝙪𝙣𝙚 ♛'
-global.wm = 'MidSoune'
-global.igfg = '♛ 𝙈𝙞𝙙𝙨𝙤𝙪𝙣𝙚 ♛'
+global.packname = '♛ ZMIIX '
+global.author = 'ZMIIX ♛'
+global.wm = 'ZMIIX '
+global.igfg = '♛ ZMIIX ♛'
 global.wait = '*⠿⠶ إنتظر ⠶⠿*'
 global.eror = '*خطأ في جلب البيانات*'
 global.sitfe = 'ᴡᴡᴡ.ᴛᴇᴄʜsᴏᴜɴᴇ.ᴄᴏᴍ'
-global.nomorown = '212697118528' // لتجربة البوت
+global.nomorown = '212604659002' // لتجربة البوت
 
 
 global.mods = [];
