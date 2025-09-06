@@ -1,6 +1,6 @@
 لا تنسى وضع رقمك في global.botnumber داخل ملف Config.js:
 
-global.botnumber = "2126xxxxxxxx" // هنا أضف رقمك
+global.botnumber = "+23569750414" // هنا أضف رقمك
 
 Thanks To: BrunoSobrino
 
